@@ -10,4 +10,3 @@ deploy:
   app: ian-dawson-addressbook
   on:
     repo: ian-dawson/addressbook
-    branch: todo_tasks
