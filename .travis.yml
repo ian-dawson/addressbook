@@ -3,3 +3,11 @@ install:
 - mvn install
 jdk:
 - oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: nvwmsAalv/p8bFOCixftWw+o1BAqtntHW+sd3CBDXJ4Nd4jzXv6h7v7G95392ym90M5vFbpUbrNJB1Ei3VVR5YXpDAXxP98yZuNvRlUtqmvdm/1yfiTVJCkNapweiE2S8m/gwD72x7iinUcOQHHR8Dsvz9SKNl6xjg2vM01A2CtpzA/Qx65xLg6/BstqL5SSfqogXWAhzcgNZyvxac5XGB2QGmg9b1+gRBdHNaZVC+Z8p7DEkO+yZMcAHUUH32/1dmmjYJTLhucxYKjNjecVA6E+axbUpQVSOmTk9/biWCMKNK3v9ZQr/0+hFPqpEqI/OPb2wIZmWrqm2HfV7tLxFCBOBCKPKUQhqaFtX15ZoHt11YF1UP5psVm16QdOOaos/RlwVku2+cD5KrKTA1rPAVPoGmgyjStpLXfxh8OsYtv6lKcCIbZs7WC1p/ea4FzIS3TB4Me5sd0fDgC54gTTovrUVT1YNYGVUfMpxYSwMqQFs1N0Rwu+xktWdnJTvseXUWhrjCJNvdf95gwFvEa0YTkOfCIwFQpLBSq8DtuQFdCdYVYE9Lz6YaJyIGdV2xtmChC3WffzZn8zUYdRpxHu+oc7aY2/P8oTVRRl4n1RqJGiHv54dPLpeIBRuDkfks/fCBY/ipZlgLMrQoLnPbYw2S4CYc8WLcFFLIwp1/6GUWI=
+  app: ian-dawson-addressbook
+  on:
+    repo: ian-dawson/addressbook
+    branch: todo_tasks
