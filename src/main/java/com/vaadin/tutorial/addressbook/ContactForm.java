@@ -25,8 +25,12 @@ public class ContactForm extends FormLayout {
 
     Button save = new Button("Save", this::save);
     Button cancel = new Button("Cancel", this::cancel);
+    Button delete = new Button("Delete", this::delete);
     TextField firstName = new TextField("First name");
     TextField lastName = new TextField("Last name");
+    TextField task = new TextField("Task");
+    DateField startDate = new DateField("Start date");
+    DateField expectedEndDate = new DateField("End date");
     TextField phone = new TextField("Phone");
     TextField email = new TextField("Email");
     DateField birthDate = new DateField("Birth date");
@@ -50,6 +54,8 @@ public class ContactForm extends FormLayout {
          */
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        delete.setStyleName(ValoTheme.BUTTON_DANGER);
+        delete.setClickShortcut(ShortcutAction.KeyCode.DELETE);
         setVisible(false);
     }
 
@@ -57,10 +63,10 @@ public class ContactForm extends FormLayout {
         setSizeUndefined();
         setMargin(true);
 
-        HorizontalLayout actions = new HorizontalLayout(save, cancel);
+        HorizontalLayout actions = new HorizontalLayout(save, cancel, delete);
         actions.setSpacing(true);
 
-        addComponents(actions, firstName, lastName, phone, email, birthDate);
+        addComponents(actions, task, startDate, expectedEndDate);
     }
 
     /*
@@ -82,8 +88,7 @@ public class ContactForm extends FormLayout {
             // Save DAO to backend with direct synchronous service API
             getUI().service.save(contact);
 
-            String msg = String.format("Saved '%s %s'.", contact.getFirstName(),
-                    contact.getLastName());
+            String msg = String.format("Saved '%s'.", contact.getTask());
             Notification.show(msg, Type.TRAY_NOTIFICATION);
             getUI().refreshContacts();
         } catch (FieldGroup.CommitException e) {
@@ -94,6 +99,14 @@ public class ContactForm extends FormLayout {
     public void cancel(Button.ClickEvent event) {
         // Place to call business logic.
         Notification.show("Cancelled", Type.TRAY_NOTIFICATION);
+        getUI().contactList.select(null);
+    }
+    
+    public void delete(Button.ClickEvent event) {
+        // Place to call business logic.
+        Notification.show("Deleted", Type.TRAY_NOTIFICATION);
+        getUI().service.delete(contact);
+        getUI().refreshContacts();
         getUI().contactList.select(null);
     }
 

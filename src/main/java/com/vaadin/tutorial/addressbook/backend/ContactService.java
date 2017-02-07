@@ -24,6 +24,8 @@ public class ContactService {
             "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor",
             "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin",
             "Thompson", "Young", "King", "Robinson" };
+    static String[] tasks = { "Eat breakfast", "Finish 3130 assignment", 
+    		"Make bed", };
 
     private static ContactService instance;
 
@@ -38,6 +40,9 @@ public class ContactService {
                 Contact contact = new Contact();
                 contact.setFirstName(fnames[r.nextInt(fnames.length)]);
                 contact.setLastName(lnames[r.nextInt(fnames.length)]);
+                contact.setTask(tasks[r.nextInt(tasks.length)]);
+                contact.setStartDate(cal.getTime());
+                contact.setExpectedEndDate(cal.getTime());
                 contact.setEmail(contact.getFirstName().toLowerCase() + "@"
                         + contact.getLastName().toLowerCase() + ".com");
                 contact.setPhone("+ 358 555 " + (100 + r.nextInt(900)));
@@ -85,6 +90,7 @@ public class ContactService {
     }
 
     public synchronized void delete(Contact value) {
+    	System.out.println("Deleting contact:" + value);
         contacts.remove(value.getId());
     }
 

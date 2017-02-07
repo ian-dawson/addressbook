@@ -10,3 +10,4 @@ deploy:
   app: ian-dawson-addressbook
   on:
     repo: ian-dawson/addressbook
+    all_branches: true
